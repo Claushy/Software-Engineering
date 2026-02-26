@@ -1,0 +1,64 @@
+/* Color Palette */
+:root {
+    --ceat-green-dark: #1b5e20;
+    --ceat-green-light: #2e7d32;
+    --ceat-white: #ffffff;
+    --ceat-bg: #f0f4f1;
+}
+
+body.ceat-portal-bg {
+    background-color: var(--ceat-bg);
+    background-image: linear-gradient(135deg, #e8f5e9 0%, #f0f4f1 100%);
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Green Header Accent */
+.login-card::before {
+    content: "";
+    height: 6px;
+    width: 100%;
+    background: var(--ceat-green-dark);
+    display: block;
+}
+
+.logo-circle {
+    width: 70px;
+    height: 70px;
+    background: var(--ceat-green-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.logo-text {
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.btn-ceat-green {
+    background-color: var(--ceat-green-dark);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-cea-green:hover {
+    background-color: var(--ceat-green-light);
+    transform: translateY(-1px);
+    color: white;
+}
+
+.form-control:focus {
+    border-color: var(--ceat-green-light);
+    box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.15);
+}
