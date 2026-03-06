@@ -18,14 +18,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // 2. Check Student Table
-    $userSql = "SELECT id, fullname FROM ceatuser WHERE email = ? AND password = ?";
-    $userRes = sqlsrv_query($conn, $userSql, array($email, $password));
+  $userSql = "SELECT id, fullname, otp_verified FROM ceatuser WHERE email=? AND password=?";
+$userRes = sqlsrv_query($conn,$userSql,array($email,$password));
 
-    if ($userRes && $userRow = sqlsrv_fetch_array($userRes, SQLSRV_FETCH_ASSOC)) {
-        $_SESSION['user_name'] = $userRow['fullname'];
-        $_SESSION['role'] = 'student';
-        header("Location: student_portal.php"); exit;
+if ($userRes && $userRow = sqlsrv_fetch_array($userRes, SQLSRV_FETCH_ASSOC)) {
+
+    if($userRow['otp_verified'] == 0){
+
+        $_SESSION['verify_email'] = $email;
+        header("Location: verify_otp.php");
+        exit;
+
     }
+
+    $_SESSION['user_name'] = $userRow['fullname'];
+    $_SESSION['role'] = 'student';
+
+    header("Location: student_portal.php");
+    exit;
+}
     $error = "Invalid institutional credentials!";
 }
 ?>
