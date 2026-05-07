@@ -1,10 +1,14 @@
 <?php
-// LAPTOP-0UHDLDRK\SQLEXPRESS connection
-$serverName = "LAPTOP-0UHDLDRK\\SQLEXPRESS"; 
+if (!extension_loaded('sqlsrv')) {
+    die('sqlsrv extension is NOT loaded in PHP.');
+}
+
+$serverName = "MSI\\SQLEXPRESS01";
+
 $connectionOptions = array(
     "Database" => "DLSU",
     "CharacterSet" => "UTF-8",
-    "TrustServerCertificate" => true 
+    "TrustServerCertificate" => true
 );
 
 $conn = sqlsrv_connect($serverName, $connectionOptions);
@@ -12,4 +16,5 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
 if ($conn === false) {
     die("<pre>" . print_r(sqlsrv_errors(), true) . "</pre>");
 }
+
 ?>
